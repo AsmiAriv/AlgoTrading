@@ -1,4 +1,4 @@
-# ${COURSE TITLE GOES HERE}
+# Hands-on Algorithmic Trading with Python
 
 ![Powered by Jupyter Logo](https://cdn.oreillystatic.com/images/icons/powered_by_jupyter.png)
 
