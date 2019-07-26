@@ -1,19 +1,15 @@
-FROM jupyter/<notebook>:<version hash>
+FROM jupyter/datascience-notebook:7a3e968dd212
 
 #Set the working directory
 WORKDIR /home/jovyan/
 
-# Modules
-COPY requirements.txt /home/jovyan/requirements.txt
-RUN pip install -r /home/jovyan/requirements.txt
-
+USER root
 # Add files
 COPY notebooks /home/jovyan/notebooks
-COPY data /home/jovyan/data
-COPY solutions /home/jovyan/solutions
+COPY requirements.txt /home/jovyan/
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Allow user to write to directory
-USER root
 RUN chown -R $NB_USER /home/jovyan \
     && chmod -R 774 /home/jovyan \
     && rm -fR /home/jovyan/work 
