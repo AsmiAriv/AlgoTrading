@@ -5,14 +5,15 @@ WORKDIR /home/jovyan/
 
 USER root
 # Add files
-COPY notebooks /home/jovyan/notebooks
+COPY *.ipynb /home/jovyan/
 COPY requirements.txt /home/jovyan/
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Allow user to write to directory
 RUN chown -R $NB_USER /home/jovyan \
     && chmod -R 774 /home/jovyan \
-    && rm -fR /home/jovyan/work 
+    && rm -fR /home/jovyan/work \ 
+    && rm -f /home/jovyan/requirements.txt
 USER $NB_USER
 
 # Expose the notebook port
